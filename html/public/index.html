@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+	<meta charset="utf-8">
+	<title>Vida de Programador</title>
+	<meta name="viewport" content="width=device-width">
+
+	<link rel="stylesheet" type="text/css" href="css/style.css">
+
+	<link rel="shortcut icon" href="imgs/icon-128.png">
+	<link rel="apple-touch-icon" href="imgs/icon-apple.png">
+
+	<link rel="manifest" href="manifest.json">
+
+</head>
+
+<body>
+	<header>
+		<img src="imgs/logo.png" alt="Vida de Programador" title="Vida de Programador">
+	</header>
+
+	<div id="alert">
+		<p>Deseja adicionar este APP na tela do seu dispositivo?</p>
+		<button type="button" class="btn" id="btnAdd">Adicionar a Tela</button>
+		<button type="button" class="btn" id="btnCancel">Fechar</button>
+	</div>
+
+	<main id="tirinhas"></main>
+
+	<script src="js/tirinhas.js"></script>
+	<script src="js/funcoes.js"></script>
+	<script>
+		//verificar se ha suporte a sw
+		if ('serviceWorker' in navigator) {
+
+			//registrar o sw em um escopo
+			navigator.serviceWorker.register("sw.js", { scope: '/' })
+				.then(function (register) {
+					//verificar o que esta sendo feito
+					if (register.installing)
+						console.log('Instalado com sucesso')
+					else if (register.waiting)
+						console.log('SW em espera')
+					else if (register.active)
+						console.log('SW ativo')
+
+					console.log('SW registrado no escopo: ' + register.scope);
+
+				})
+				.catch(function (error) {
+					console.log('Erro ao registrar ' + error);
+				})
+
+		} else {
+			alert('Atualize seu navegador')
+		}
+	</script>
+</body>
+</html>

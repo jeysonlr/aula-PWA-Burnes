@@ -8,10 +8,8 @@ ler = () => {
 		.then(response => response.json())
 		.then(data => {
 			var tam = data.length;
-			//console.log(tam);
 
 			for (var i = 0; i < tam; i++) {
-				//console.log(data[i].tirinha)
 				document.getElementById('tirinhas').innerHTML += `<div class='tira'><h1>` + data[i].titulo + `</h1><img src='${data[i].tirinha}' alt='${data[i].titulo}'></div>`;
 			}
 		})
